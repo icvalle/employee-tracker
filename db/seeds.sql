@@ -1,0 +1,108 @@
+INSERT INTO department (id, name)
+VALUES 
+    (
+        500,
+        'Sales'
+    ),
+    (
+        600,
+        'Engineering'
+    ),
+    (
+        700,
+        'Finance'
+    ),
+    (
+        800,
+        'Legal'
+    );
+
+INSERT INTO role (id, title, salary, department_id)
+VALUES 
+    (
+        580,
+        'Sales Lead',
+        100000,
+        500
+    ), 
+    (
+        520,
+        'Salesperson',
+        80000,
+        500
+    ), 
+    (
+        680,
+        'Lead Engineer',
+        150000,
+        600
+    ), 
+    (
+        620,
+        'Software Engineer',
+        120000,
+        600
+    ),
+    (
+        720,
+        'Accountant',
+        125000,
+        700
+    ), 
+    (
+        820,
+        'Lawyer',
+        200000,
+        800
+    ),
+    (
+        880,
+        'Legal Team Lead',
+        250000,
+        800
+    );
+
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES 
+    (
+        'John',
+        'Doe',
+        580,
+        680
+    ),
+    (
+        'Mike',
+        'Chan',
+        520,
+        580
+    ),
+    (
+        'Ashley',
+        'Rodriguez',
+        680,
+        null
+    ),
+    (
+        'Kevin',
+        'Tupik',
+        620,
+        680
+    ),
+    (
+        'Malia',
+        'Brown',
+        720,
+        null
+    ),
+    (
+        'Sarah',
+        'Lourd',
+        880,
+        null
+    ),
+    (
+        'Tom',
+        'Allen',
+        820,
+        880
+    );
