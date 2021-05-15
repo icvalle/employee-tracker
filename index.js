@@ -55,9 +55,9 @@ const runSearch = () => {
 };
 
 async function viewEmployees () {
-    let employees = await db.findAllEmployees();
-    console.table(employees);
-    runSearch();
+  let employees = await db.findAllEmployees();
+  console.table(employees);
+  runSearch();
 }
 
 async function viewDept () {
@@ -70,6 +70,113 @@ async function viewRoles () {
   let roles = await db.findAllRoles();
   console.table(roles);
   runSearch();
+}
+
+async function addEmployee () {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "firstName",
+        message: "What is the employee's first name?"
+      },
+      {
+        type: "input",
+        name: "lastName",
+        message: "What is the employee's last name?",
+      },
+      {
+        type: "list",
+        name: "role",
+        message: "What is the employee's role id?",
+        choices: [520, 580, 620, 680, 720, 780, 820, 880]
+      },
+      {
+        type: "list",
+        name: "manager",
+        message: "What is the employee's manager id?",
+        choices: [580, 680, 780, 880]
+      }
+    ])
+    .then((answer) => {
+      db.postEmployee(answer);
+      console.log('New employee has been added.');
+      runSearch();
+    });
+}
+
+async function addDept() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "What is the name of the department you would like to add?",
+      },
+      {
+        type: "number",
+        name: "id",
+        message: "What is the department's id?",
+      }
+    ])
+    .then((answer) => {
+      db.postDept(answer);
+      console.log('New department has been added.');
+      runSearch();
+    });
+}
+
+async function addRole() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "title",
+        message: "What is the role you would like to add?",
+      },
+      {
+        type: "number",
+        name: "id",
+        message: "What is the id of this role?",
+      },
+      {
+        type: "number",
+        name: "salary",
+        message: "What is the salary for this role?",
+      },
+      {
+        type: "number",
+        name: "departmentId",
+        message: "What is the department id for this role?",
+      },
+    ])
+    .then((answer) => {
+      db.postRole(answer);
+      console.log('New role has been added.');
+      runSearch();
+    });
+}
+
+async function updateEmployeeRole() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "id",
+        message: "What is the id of the employee you would like to udpate?",
+      },
+      {
+        type: "list",
+        name: "title",
+        message: "What is the new role id of the employee?",
+        choices: [520, 580, 620, 680, 720, 780, 820, 880]
+      },
+    ])
+    .then((answer) => {
+      db.putEmployeeRole(answer);
+      console.log('Employee\'s role has been updated.');
+      runSearch();
+    });
 }
 
 runSearch();

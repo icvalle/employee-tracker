@@ -23,6 +23,65 @@ class DB {
         );
     }
 
+    postEmployee(answer) {
+        return this.connection.query(
+            'INSERT INTO employee SET ?',
+            {
+                first_name: answer.firstName,
+                last_name: answer.lastName,
+                role_id: answer.role,
+                manager_ID: answer.manager
+            });
+    }
+
+    postDept(answer) {
+        return this.connection.query(
+            'INSERT INTO department SET ?',
+            {
+                id: answer.id,
+                name: answer.name,
+            });
+    }
+
+    postRole(answer) {
+        return this.connection.query(
+            'INSERT INTO role SET ?',
+            {
+                id: answer.id,
+                title: answer.title,
+                salary: answer.salary,
+                department_id: answer.departmentId,
+            });
+    }
+
+    postRole(answer) {
+        return this.connection.query(
+            'UPDATE employee SET ? WHERE ?',
+            [
+                {
+                    title: answer.title,
+                },
+                {
+                    id: answer.id,
+                }, 
+            ],
+        );
+    }
+
+    putEmployeeRole(answer) {
+        return this.connection.query(
+            'UPDATE employee SET ? WHERE ?',
+            [
+                {
+                    role_id: answer.title,
+                },
+                {
+                    id: answer.id,
+                }, 
+            ],
+        );
+    }
+
 }
 
 module.exports = new DB(connection);
