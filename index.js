@@ -14,7 +14,9 @@ const runSearch = () => {
             'Add Employee', 
             'Add Department', 
             'Add Role', 
-            'Update Employee Role'
+            'Update Employee Role',
+            'Update Employee Manager',
+            'Delete an Employee'
         ],
       })
       .then((answer) => {
@@ -45,6 +47,14 @@ const runSearch = () => {
         
           case 'Update Employee Role':
             updateEmployeeRole();
+            break;
+
+          case 'Update Employee Manager':
+            updateEmployeeManager();
+            break;
+
+          case 'Delete an Employee':
+            deleteEmployee();
             break;
   
           default:
@@ -95,7 +105,7 @@ async function addEmployee () {
         type: "list",
         name: "manager",
         message: "What is the employee's manager id?",
-        choices: [580, 680, 780, 880]
+        choices: [0, 1, 2, 3, 4, 5, 6, 7]
       }
     ])
     .then((answer) => {
@@ -161,7 +171,7 @@ async function updateEmployeeRole() {
   inquirer
     .prompt([
       {
-        type: "input",
+        type: "number",
         name: "id",
         message: "What is the id of the employee you would like to udpate?",
       },
@@ -175,6 +185,44 @@ async function updateEmployeeRole() {
     .then((answer) => {
       db.putEmployeeRole(answer);
       console.log('Employee\'s role has been updated.');
+      runSearch();
+    });
+}
+
+async function updateEmployeeManager() {
+  inquirer
+    .prompt([
+      {
+        type: "number",
+        name: "id",
+        message: "What is the id of the employee whose manager you would like to udpate?",
+      },
+      {
+        type: "list",
+        name: "manager_ID",
+        message: "What is the id of the new manager for this employee?",
+        choices: [0, 1, 2, 3, 4, 5, 6, 7]
+      },
+    ])
+    .then((answer) => {
+      db.putEmployeeManager(answer);
+      console.log('Employee\'s manager has been updated.');
+      runSearch();
+    });
+}
+
+async function deleteEmployee() {
+  inquirer
+    .prompt([
+      {
+        type: "number",
+        name: "id",
+        message: "What is the id of the employee you would like to delete?",
+      }
+    ])
+    .then((answer) => {
+      db.removeEmployee(answer);
+      console.log('Employee has been deleted.');
       runSearch();
     });
 }

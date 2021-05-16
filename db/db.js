@@ -68,6 +68,30 @@ class DB {
         );
     }
 
+    putEmployeeManager(answer) {
+        return this.connection.query(
+            'UPDATE employee SET ? WHERE ?',
+            [
+                {
+                    manager_ID: answer.manager_ID,
+                },
+                {
+                    id: answer.id,
+                }, 
+            ],
+        );
+      }
+
+    removeEmployee(answer) {
+        return this.connection.query(
+            'DELETE FROM employee WHERE ?',
+            [
+                {
+                    id: answer.id,
+                },
+            ],
+        );
+      }
 }
 
 module.exports = new DB(connection);
