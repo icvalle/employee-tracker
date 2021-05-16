@@ -62,19 +62,19 @@ VALUES
         800
     );
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_ID)
 VALUES 
     (
         'John',
         'Doe',
         580,
-        680
+        3
     ),
     (
         'Mike',
         'Chan',
         520,
-        580
+        1
     ),
     (
         'Ashley',
@@ -86,7 +86,7 @@ VALUES
         'Kevin',
         'Tupik',
         620,
-        680
+        3
     ),
     (
         'Malia',
@@ -104,5 +104,5 @@ VALUES
         'Tom',
         'Allen',
         820,
-        880
+        7
     );

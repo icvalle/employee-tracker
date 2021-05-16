@@ -140,7 +140,7 @@ async function addRole() {
         message: "What is the id of this role?",
       },
       {
-        type: "number",
+        type: "decimal",
         name: "salary",
         message: "What is the salary for this role?",
       },
